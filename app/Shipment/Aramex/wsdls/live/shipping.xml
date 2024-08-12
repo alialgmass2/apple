@@ -1,0 +1,286 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/soap/http"
+                  xmlns:tns="http://tempuri.org/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/anonymous"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  name="Service_1_0"
+                  targetNamespace="http://tempuri.org/">
+
+    <!-- Messages -->
+    <wsdl:message name="ShipmentCreationRequest">
+        <wsdl:part name="parameters" element="tns:ShipmentCreationRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ShipmentCreationResponse">
+        <wsdl:part name="parameters" element="tns:ShipmentCreationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="LabelPrintingRequest">
+        <wsdl:part name="parameters" element="tns:LabelPrintingRequest"/>
+    </wsdl:message>
+    <wsdl:message name="LabelPrintingResponse">
+        <wsdl:part name="parameters" element="tns:LabelPrintingResponse"/>
+    </wsdl:message>
+    <wsdl:message name="PickupCreationRequest">
+        <wsdl:part name="parameters" element="tns:PickupCreationRequest"/>
+    </wsdl:message>
+    <wsdl:message name="PickupCreationResponse">
+        <wsdl:part name="parameters" element="tns:PickupCreationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="PickupCancelationRequest">
+        <wsdl:part name="parameters" element="tns:PickupCancelationRequest"/>
+    </wsdl:message>
+    <wsdl:message name="PickupCancelationResponse">
+        <wsdl:part name="parameters" element="tns:PickupCancelationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ReserveRangeRequest">
+        <wsdl:part name="parameters" element="tns:ReserveRangeRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ReserveRangeResponse">
+        <wsdl:part name="parameters" element="tns:ReserveRangeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="LastReservedShipmentNumberRangeRequest">
+        <wsdl:part name="parameters" element="tns:LastReservedShipmentNumberRangeRequest"/>
+    </wsdl:message>
+    <wsdl:message name="LastReservedShipmentNumberRangeResponse">
+        <wsdl:part name="parameters" element="tns:LastReservedShipmentNumberRangeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ScheduledDeliveryRequest">
+        <wsdl:part name="parameters" element="tns:ScheduledDeliveryRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ScheduledDeliveryResponse">
+        <wsdl:part name="parameters" element="tns:ScheduledDeliveryResponse"/>
+    </wsdl:message>
+    <wsdl:message name="HoldCreationRequest">
+        <wsdl:part name="parameters" element="tns:HoldCreationRequest"/>
+    </wsdl:message>
+    <wsdl:message name="HoldCreationResponse">
+        <wsdl:part name="parameters" element="tns:HoldCreationResponse"/>
+    </wsdl:message>
+
+    <!-- Port Type -->
+    <wsdl:portType name="Service_1_0">
+        <wsdl:operation name="CreateShipments">
+            <wsdl:input wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CreateShipments"
+                        message="tns:ShipmentCreationRequest"/>
+            <wsdl:output wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CreateShipmentsResponse"
+                         message="tns:ShipmentCreationResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="PrintLabel">
+            <wsdl:input wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/PrintLabel"
+                        message="tns:LabelPrintingRequest"/>
+            <wsdl:output wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/PrintLabelResponse"
+                         message="tns:LabelPrintingResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="CreatePickup">
+            <wsdl:input wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CreatePickup"
+                        message="tns:PickupCreationRequest"/>
+            <wsdl:output wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CreatePickupResponse"
+                         message="tns:PickupCreationResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="CancelPickup">
+            <wsdl:input wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CancelPickup"
+                        message="tns:PickupCancelationRequest"/>
+            <wsdl:output wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CancelPickupResponse"
+                         message="tns:PickupCancelationResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ReserveShipmentNumberRange">
+            <wsdl:input wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/ReserveShipmentNumberRange"
+                        message="tns:ReserveRangeRequest"/>
+            <wsdl:output wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/ReserveShipmentNumberRangeResponse"
+                         message="tns:ReserveRangeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetLastShipmentsNumbersRange">
+            <wsdl:input wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/GetLastShipmentsNumbersRange"
+                        message="tns:LastReservedShipmentNumberRangeRequest"/>
+            <wsdl:output wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/GetLastShipmentsNumbersRangeResponse"
+                         message="tns:LastReservedShipmentNumberRangeResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="ScheduleDelivery">
+            <wsdl:input wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/ScheduleDelivery"
+                        message="tns:ScheduledDeliveryRequest"/>
+            <wsdl:output wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/ScheduleDeliveryResponse"
+                         message="tns:ScheduledDeliveryResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="HoldShipments">
+            <wsdl:input wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/HoldShipments"
+                        message="tns:HoldCreationRequest"/>
+            <wsdl:output wsaw:Action="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/HoldShipmentsResponse"
+                         message="tns:HoldCreationResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- Bindings -->
+    <wsdl:binding name="BasicHttpBinding_Service_1_0" type="tns:Service_1_0">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="CreateShipments">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CreateShipments"
+                            style="document"/>
+            <wsdl:input name="ShipmentCreationRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ShipmentCreationResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PrintLabel">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/PrintLabel" style="document"/>
+            <wsdl:input name="LabelPrintingRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="LabelPrintingResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreatePickup">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CreatePickup" style="document"/>
+            <wsdl:input name="PickupCreationRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="PickupCreationResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CancelPickup">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CancelPickup" style="document"/>
+            <wsdl:input name="PickupCancelationRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="PickupCancelationResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ReserveShipmentNumberRange">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/ReserveShipmentNumberRange"
+                            style="document"/>
+            <wsdl:input name="ReserveRangeRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ReserveRangeResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetLastShipmentsNumbersRange">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/GetLastShipmentsNumbersRange"
+                            style="document"/>
+            <wsdl:input name="LastReservedShipmentNumberRangeRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="LastReservedShipmentNumberRangeResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ScheduleDelivery">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/ScheduleDelivery"
+                            style="document"/>
+            <wsdl:input name="ScheduledDeliveryRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ScheduledDeliveryResponse">
+                <soap:body use="literal"/>
+            </ws:output>
+        </wsdl:operation>
+        <wsdl:operation name="HoldShipments">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/HoldShipments"
+                            style="document"/>
+            <wsdl:input name="HoldCreationRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="HoldCreationResponse">
+                <soap:body use="literal"/>
+            </ws:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:binding name="BasicHttpBinding_Service_1_01" type="tns:Service_1_0">
+        <wsp:PolicyReference URI="#BasicHttpBinding_Service_1_01_policy"/>
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="CreateShipments">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CreateShipments"
+                            style="document"/>
+            <wsdl:input name="ShipmentCreationRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ShipmentCreationResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PrintLabel">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/PrintLabel" style="document"/>
+            <wsdl:input name="LabelPrintingRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="LabelPrintingResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreatePickup">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CreatePickup" style="document"/>
+            <wsdl:input name="PickupCreationRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="PickupCreationResponse">
+                <soap:body use="literal"/>
+            </ws:output>
+        </wsdl:operation>
+        <wsdl:operation name="CancelPickup">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/CancelPickup" style="document"/>
+            <wsdl:input name="PickupCancelationRequest">
+                <soap:body use="literal"/>
+            </ws:input>
+            <wsdl:output name="PickupCancelationResponse">
+                <soap:body use="literal"/>
+            </ws:output>
+        </wsdl:operation>
+        <wsdl:operation name="ReserveShipmentNumberRange">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/ReserveShipmentNumberRange"
+                            style="document"/>
+            <wsdl:input name="ReserveRangeRequest">
+                <soap:body use="literal"/>
+            </ws:input>
+            <wsdl:output name="ReserveRangeResponse">
+                <soap:body use="literal"/>
+            </ws:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetLastShipmentsNumbersRange">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/GetLastShipmentsNumbersRange"
+                            style="document"/>
+            <wsdl:input name="LastReservedShipmentNumberRangeRequest">
+                <soap:body use="literal"/>
+            </ws:input>
+            <wsdl:output name="LastReservedShipmentNumberRangeResponse">
+                <soap:body use="literal"/>
+            </ws:output>
+        </wsdl:operation>
+        <wsdl:operation name="ScheduleDelivery">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/ScheduleDelivery"
+                            style="document"/>
+            <wsdl:input name="ScheduledDeliveryRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="ScheduledDeliveryResponse">
+                <soap:body use="literal"/>
+            </ws:output>
+        </wsdl:operation>
+        <wsdl:operation name="HoldShipments">
+            <soap:operation soapAction="https://ws.sbx.aramex.net/ShippingAPI.V2/Service_1_0/HoldShipments"
+                            style="document"/>
+            <wsdl:input name="HoldCreationRequest">
+                <soap:body use="literal"/>
+            </ws:input>
+            <wsdl:output name="HoldCreationResponse">
+                <soap:body use="literal"/>
+            </ws:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <!-- Services -->
+    <wsdl:service name="Service_1_0">
+        <wsdl:port name="BasicHttpBinding_Service_1_0" binding="tns:BasicHttpBinding_Service_1_0">
+            <soap:address location="http://ws.aramex.net/ShippingAPI.V2/Shipping/Service_1_0.svc"/>
+        </wsdl:port>
+        <wsdl:port name="BasicHttpBinding_Service_1_01" binding="tns:BasicHttpBinding_Service_1_01">
+            <soap:address location="https://ws.aramex.net/ShippingAPI.V2/Shipping/Service_1_0.svc"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
