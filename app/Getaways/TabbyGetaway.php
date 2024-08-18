@@ -237,10 +237,12 @@ class TabbyGetaway
     }
     public function get_payments_data($transaction_id)
     {
-        $response = Http::withToken('sk_52aeb1f2-604f-47d3-9606-d0705ec00e87')->asForm()->get("https://api.tabby.ai/api/v2/payments/$transaction_id");
+        $response = Http::withToken('sk_52aeb1f2-604f-47d3-9606-d0705ec00e87')->asForm()->get("https://api.tabby.ai/api/v2/payments");
+        dd($response->json());
         if ($response->successful()) {
             return new TabbyTransactionDTO($response->json());
         } else {
+            dd($response->json(),$transaction_id);
 //            Log::error('Error response from server: ', ['response' => $response->body()]);
             return null; // Or handle the error as needed
         }

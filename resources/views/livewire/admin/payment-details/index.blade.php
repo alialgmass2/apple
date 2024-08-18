@@ -51,7 +51,7 @@
                                     <td>{{\Carbon\Carbon::parse($payment->timestamp)->format('F m y')}}</td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ route('admin.payments.show',$payment->merchantTransactionId) }}"
+                                            <a href="{{ route('admin.payments.show',[$payment->merchantTransactionId,$payment->id]) }}"
                                                 class="btn btn-xs sharp text-warning fz-16px"><i class="fa fa-eye"
                                                     wire:loading.class="disabled"></i>
                                             </a>

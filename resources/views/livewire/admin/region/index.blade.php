@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header  justify-content-end"> 
+                <div class="card-header  justify-content-end">
                     <h4 class="card-title">
                         <x-admin.button-create title="region" wire:click="showModal" />
                     </h4>
@@ -109,15 +109,6 @@
     {{-- MODAL END --}}
     @push('js')
 
-    <script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=PUhnPjbPIh_aZQ3RzLc89Yy8zB2yIMgAZ5WS_-dN1M_osytxpxUgTtJJew5ZAhoh0RD1iztIrnBlqTv3G8qUA2i9qItO9muHHF6ulK8klxLflf-ZrvLpBIvuRermJ6c1tfSv7NZERE-cQUxdzsFQbmB068b0-5e6Nl2NUEdoifvQ4TerfTtdHYZIiVBsLMGWU0uU1Mtv2bTvrrx0Q72k_D9xpifO7VJFNwHoRE5iMdehvJt7i_JvQufHwM-DLCIct-pp-HvSGB2-kScDQeFU0Q-88roxWjYAUoMIXpZgm6P-RtibIi_WgM59JuxH3KrOzO07CNEQhMwvVcZNSUcixdq-qIqJajFGiB00fmLetIRhZXXXeAPBRH0R9vtZrWk6tgXyTducqQpyYL4mkoVAkb5ya0cd6faZfaht-HNb7DEDsPHrwP7GWsN98LmdxAaQOZXIvcJM74kTbvt2M2n5bJDoDaYiuJIMCFgBYB40gEyXyIU3lcNLNfHGxSunmaN81qHCvhDd2k1_KT-omXry9OQoLvrsdxdl9AXJfM_xa7iawgSL3gAOL6bIfHIqDjUzHiMvuwKeq5p5VQs-xtA-I8nN_4fUVXWm0unK0ZSmORD3gcLTBQ9xSf6i2LKkjY3jeRiGEnI7ke7OUpOYd-bVPMSCu4ualoVHBy-GoiGz24xAh-n1kiiZhhgzdDKIOGWihSb3NUYnvPK8ePMPt5pmNOpvufoE-c6ZiAvk5yALey1RJMmn0uknzgoZNonneROaUbtKGzm7rTQaW70HB9QLxjGTOyjei4DBqg1pXqVNbcF5O390qVP1iIja5D5v0HoK-uXrMFoYv-S2uL_hpfshedf8BbkIqbbSE9kMtztVc4S-HF8LCqxqu3LgRj8KBK_KT8GKr_DhHLzkISvPn7hnkg" charset="UTF-8"></script><script>
-        document.addEventListener('livewire:initialized', () => {
-                        @this.on('success', (event) => {
-                            Swal.fire(
-                            'Success',
-                            "{!! __('app.data_deleted') !!}",
-                            'success');
-                        });
-                    });
-    </script>
+    
     @endpush
 </div>

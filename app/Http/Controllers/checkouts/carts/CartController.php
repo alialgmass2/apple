@@ -15,6 +15,7 @@ class CartController extends Controller
      */
     public function index()
     {
+
         $carts = auth()->user()->cart()->with('product')->get();
       //  $product_ids = auth()->user()->cart()->pluck('product_id')->toArray();
 

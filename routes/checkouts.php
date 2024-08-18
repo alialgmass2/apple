@@ -17,3 +17,4 @@ Route::get('cancelTabby',[CheckoutController::class,'cancelTabby'])->name('checo
 Route::get('failureTabby',[CheckoutController::class,'failureTabby'])->name('checout.failureTabby');
 
 Route::any('getWebHock',[CheckoutController::class,'getWebHock'])->withoutMiddleware(['csrf','auth'])->name('checout.getWebHock');
+Route::any('getWebHockHyperPay',[CheckoutController::class,'getWebHockHyperPay'])->withoutMiddleware(['csrf','auth'])->name('checout.getWebHockHyperPay');

@@ -6,9 +6,9 @@ namespace App\Services;
 use App\Dtos\TransactionDTO;
 use App\Models\checkouts\PaymentTransaction;
 use Carbon\Carbon;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Http;
+use Exception;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Log;
 
 class PaymentsService
@@ -56,6 +56,18 @@ class PaymentsService
         return $id;
     }
 
+    public function getEntityId($method)
+    {
+        $entityId = env('visaMasterEntityId');
+        if ($method == 'MADA') {
+
+            $entityId = env('madaEntityId');
+
+
+        }
+        return $entityId;
+    }
+
     public function payment($data)
     {
         if (strlen($data['expiryMonth']) == 1) {
@@ -96,18 +108,6 @@ class PaymentsService
 
         return $res;
 
-    }
-
-    public function getEntityId($method)
-    {
-        $entityId = env('visaMasterEntityId');
-        if ($method == 'MADA') {
-
-            $entityId = env('madaEntityId');
-
-
-        }
-        return $entityId;
     }
 
     public function checkPaymentStatus()
@@ -152,7 +152,7 @@ class PaymentsService
     public function get_transactions_from_to(?string $from = null, ?string $to = null, $method = "VISA")
     {
         $format = 'Y-m-d H:i:s';
-        $from = $from ? Carbon::parse($from)->format($format) : Carbon::now()->subMonth()->format($format);
+        $from = $from ? Carbon::parse($from)->format($format) : Carbon::now()->subMonths(1)->format($format);
         $to = $to ? Carbon::parse($to)->format($format) : Carbon::now()->format($format);
         $data = [
             'entityId' => $this->getEntityId($method),
@@ -163,10 +163,11 @@ class PaymentsService
 //            'testMode' => 'INTERNAL'
         ];
 
+
         try {
+
             $response = Http::withToken(env('payment_token'))
                 ->get('https://eu-prod.oppwa.com/v3/query', $data);
-
             if ($response->successful()) {
                 $records = [];
                 foreach ($response->json()['records'] as $record) {
@@ -174,45 +175,17 @@ class PaymentsService
                         array_push($records, new TransactionDTO($record));
                     }
                 }
+
                 return $records;
             } else {
                 Log::error('Error response from server: ', ['response' => $response->body()]);
+
                 return []; // Or handle the error as needed
             }
         } catch (\Exception $e) {
+            dd($e->getMessage());
             Log::error('HTTP Request failed: ', ['error' => $e->getMessage()]);
             return []; // Or handle the error as needed
-        }
-    }
-
-    public function get_payment_with_transaction_id($transaction_id)
-    {
-        try {
-            $payment = PaymentTransaction::where('transaction_id', $transaction_id)->first();
-            $data = [
-                'entityId' => $this->getEntityId($payment->method ?? 'VISA'),
-                'merchantTransactionId' => $transaction_id
-            ];
-            $response = Http::withToken(env('payment_token'))->asForm()->get('https://eu-prod.oppwa.com/v3/query', $data);
-            if ($response->successful()) {
-
-                $record = [];
-
-                foreach ($response->json()['records'] as $record_item) {
-                    if ($record_item['paymentType'] == 'DB') {
-                        $record = $record_item;
-                    }
-                }
-
-
-                return new TransactionDTO($record);
-            } else {
-                Log::error('Error response from server: ', ['response' => $response->body()]);
-                return null; // Or handle the error as needed
-            }
-        } catch (\Exception $e) {
-            Log::error('HTTP Request failed: ', ['error' => $e->getMessage()]);
-            return null; // Or handle the error as needed
         }
     }
 
@@ -221,10 +194,10 @@ class PaymentsService
         $payment = PaymentTransaction::where('transaction_id', $transaction_id)->first();
         $id = $payment->payment_id;
         if (!isset($id)) {
-            $paymentFromHyperPay=$this->get_payment_with_transaction_id($transaction_id);
-            $id=$paymentFromHyperPay->id ?? null;
+            $paymentFromHyperPay = $this->get_payment_with_transaction_id($transaction_id);
+            $id = $paymentFromHyperPay->id ?? null;
         }
-        if(isset($id)){
+        if (isset($id)) {
             $data = [
                 'entityId' => $this->getEntityId($payment->method ?? 'VISA'),
                 'amount' => $payment->amount,
@@ -232,11 +205,47 @@ class PaymentsService
                 'currency' => 'SAR',
 
             ];
-            $res = \Illuminate\Support\Facades\Http::withToken(env('payment_token'))->asForm()->post('https://eu-prod.oppwa.com/v1/payments/' . $id, $data);
+            $res = Http::withToken(env('payment_token'))->asForm()->post('https://eu-prod.oppwa.com/v1/payments/' . $id, $data);
             return $res->json();
         }
-       return [];
+        return [];
 
+    }
+
+    public function get_payment_with_transaction_id($transaction_id, $method = 'MADA',$id = null)
+    {
+        try {
+
+            $payment = PaymentTransaction::where('transaction_id', $transaction_id)->first();
+            $data = [
+                'entityId' => $this->getEntityId(strtoupper($payment->method ?? $method)),
+                'merchantTransactionId' => '1291722248012'
+            ];
+
+            $response = Http::withToken(env('payment_token'))->asForm()->get('https://eu-prod.oppwa.com/v3/query', $data);
+            if ($response->successful()) {
+                $record = [];
+                foreach ($response->json()['records'] as $record_item) {
+                    if ($record_item['paymentType'] == 'DB') {
+                        if($id){
+                            if ($record_item['id'] == $id){
+                                $record = $record_item;
+                            }
+                        }else{
+                            $record = $record_item;
+                        }
+                    }
+                }
+                return new TransactionDTO($record);
+            } else {
+
+                Log::error('Error response from server: ', ['response' => $response->body()]);
+                return null; // Or handle the error as needed
+            }
+        } catch (Exception $e) {
+            Log::error('HTTP Request failed: ', ['error' => $e->getMessage()]);
+            return null; // Or handle the error as needed
+        }
     }
 }
 

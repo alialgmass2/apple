@@ -172,7 +172,11 @@ class CheckoutController extends Controller
 
         return response()->json(['message' => 'order created  successfully.']);
     }
+    public function getWebHockHyperPay(Request $request)
+    {
+        return response()->json($request->all());
 
+    }
     public function storeTabby($id = null)
     {
         $payment_data = Cache::get('order' . auth()->user()->id);

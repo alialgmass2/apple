@@ -30,9 +30,11 @@ class Show extends Component
         if ($this->order->payment_transaction->method == 'tabby'){
 //            dd($this->order->payment_transaction->payment_id);
             $payment = (new TabbyGetaway())->get_payments_data($this->order->payment_transaction->payment_id);
+            dd($payment);
         }else{
             $payment = (new PaymentsService())->get_payment_with_transaction_id($this->order->payment_transaction->transaction_id);
         }
+
         return view('livewire.admin.orders.show',[
             'orderStatauses' => $orderStatauses,
             'payment' => $payment

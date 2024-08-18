@@ -1,0 +1,68 @@
+
+header{
+    width: 100%;  
+    height: 904px;   
+    /* background: linear-gradient(0deg, rgba(0, 0, 0, 0.052) 0%, rgba(0, 0, 0, 0.041) 100%), url('../assets/images/HomeHeroBanner.svg'); */
+    background:url('../assets/images/HomeHeroBanner.svg');
+    background-repeat: no-repeat;
+    /* background-size: 100%;   */
+    background-size: cover;  
+    display: flex;
+    align-items: center;
+}
+ .logo img:first-child{
+    margin: 0px 16px 0px 12px;
+ }
+.content{
+    /* padding-left: 124px; */
+    padding-left: 8.6%;
+    /* padding-top: 308px;  */
+    display: flex;
+    flex-direction: column;
+    gap: 24px; 
+}
+.content p{
+    color: #FFF; 
+font-family: SF Hello;
+font-size: 54px;
+font-style: normal;
+font-weight: 400; 
+opacity: 0.92;
+letter-spacing: 1.23px;
+width: 341px;
+text-align: right;  
+}
+/* ////////////////////////// */
+.about{
+    min-height: 442px;
+    background: #F2C343;
+    padding-left: 104px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* gap: 32px;  */
+    gap: 22px; 
+}
+.about-title{
+    color: #121212;
+font-family: SF Hello;
+font-size: 54px;
+font-style: normal;
+font-weight: 700;
+line-height: 74px; /* 137.037% */
+letter-spacing: 0.231px;
+opacity: 0.92;
+}
+.about-content{
+    color: #121212; 
+font-family: SF Hello;
+font-size: 32px;
+font-style: normal;
+font-weight: 500;
+line-height: 43px; /* 134.375% */
+letter-spacing: 0.231px;
+opacity: 0.92;
+}
+
+
+ 

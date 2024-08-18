@@ -6,6 +6,7 @@ use App\Mail\TestMail;
 use App\Services\OTPService;
 use App\Mail\OTPMail as MailOTPMail;
 use App\Services\ShippingService;
+use App\Services\Transactions\TransactionService;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -102,7 +103,8 @@ Route::get('/testmail2', function () {
     dd('#DONE ###################',$otp);
 });
 Route::get('/foo', function () {
-return auth('admin')->user()->roles;
+//    (new TransactionService())->create();
+    (new TransactionService())->tabby();
 });
 Route::get('/clear', function () {
     Artisan::call('optimize:clear');

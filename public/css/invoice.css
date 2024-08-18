@@ -1,0 +1,125 @@
+    
+@font-face {
+    font-family: "SF-Hello";
+    src: url("../fonts/SF-Hello.ttc");
+    src: url("../fonts/SF-Hello.ttc") format("woff"),
+        url("../fonts/SF-Hello.ttc") format("opentype"),
+        url("../fonts/SF-Hello.ttc") format("svg"), 
+
+}
+        *{
+            padding:0;
+            margin:0;
+            box-sizing:border-box; 
+        }
+        body{
+             font-family: "SF-Hello", sans-serif !important;      min-height: 100vh;
+        }
+
+ 
+        
+        main{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+        .header{ 
+            padding:10px 0px;
+        }
+        .invoice{
+            font-size: 14px;
+            font-weight: 500;
+            margin:0;
+        }
+        .invoice  span{
+            /*color: gray;*/
+            font-size:12px;
+            letter-spacing: 2px;
+        } 
+        .copyright {
+            color: #9fa4a6;
+        }
+        .footer .copyright p {
+            color: #000 !important;
+        }
+ 
+         .table>:not(caption)>*>th {
+           background: #000 ;
+            color: #ffcb08 ;
+       }
+        .footer {
+            background: #f2f2f2 !important;
+            text-align:center;
+            padding: 15px 0px;
+        }
+        .content{
+            margin: 20px auto;
+        }
+        .qr{
+            height:150px;
+        }
+        .invoice_qr{
+            display:flex;
+            align-items: center;
+            justify-content: space-between;
+            /*flex-wrap: wrap;*/
+        }
+
+        .bill{  
+    text-transform: capitalize; 
+    display: flex; 
+    justify-content: space-between; 
+
+        }
+        
+        .bill_padding{
+            padding:0px 7px;
+        } 
+        .bill_padding .invoice span{
+            letter-spacing:1px;
+        }
+        .invoice_summary{
+            font-size: 22px;
+            font-weight: 500;
+            text-transform: capitalize;
+            margin-top:30px
+        }
+        .navbar{
+            margin-bottom:40px;
+        }
+        .title{
+            font-size: 16px;
+    font-weight: 700;
+    text-transform: capitalize;
+        }
+      
+       
+        @media print{
+
+            .title{
+                /*color: #000 !important; */
+            }
+           
+               .table>:not(caption)>*>th {
+                       background: red !important;
+                       color:black ;
+                }
+                 tr { 
+    background: red !important;
+}
+        }
+        .footer_contact{
+            display:flex;
+            justify-content:space-between;
+            font-size:12px;
+                flex-wrap: wrap;
+        }
+       
+        .header_container,.container{
+            width:90%;
+            margin:auto;
+        }
+        .mb-1{
+            margin-bottom:3px !important;
+        } 

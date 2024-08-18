@@ -485,5 +485,6 @@ return [
     'transaction_id'=>'Transaction Id',
     'transaction'=>'Transaction',
     'how-to-know'=>'How To Know',
+    'last4Digits'=>'Last4Digits',
 
 ];

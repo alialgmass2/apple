@@ -1,0 +1,19 @@
+
+.sd-multiSelect .sd-CustomSelect {
+    width: 100% !important;
+    height: max-content !important;
+}
+ .sd-CustomSelect option:checked{
+     border-bottom:1px solid;
+     color:#ffcb08;
+     background-color:transparent;
+ }
+
+.sd-CustomSelect option:checked:last-of-type {
+  border-bottom: none;
+}
+ .sd-CustomSelect option{
+         height: 30px;
+    display: flex;
+    align-items: center; 
+ } 

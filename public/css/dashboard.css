@@ -1,0 +1,43 @@
+        .span{
+                width: 90%;
+    word-wrap: break-word;
+        }
+        .select_dropdown{
+    position:relative;
+}
+.select_dropdown::after { 
+    content: "\f078";
+    font-family: 'FontAwesome';
+    font-size: 14px;
+    pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.order_status{
+       min-width: 125px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    border-radius: 1rem;
+    padding: 4px 10px;
+    font-family: SF Hello;
+    text-transform: capitalize;
+}
+.table>tbody tr td {
+    padding-left: 0px;
+    padding-right: 0;
+    text-align: center;
+}
+.table>tbody tr td>div{
+    margin:auto;
+    width:max-content !important;
+}
+.dashboard-card-profile img {
+    object-fit:contain !important
+}
+.badge{
+    min-width:110px;
+}

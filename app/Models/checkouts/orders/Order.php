@@ -4,6 +4,7 @@ namespace App\Models\checkouts\orders;
 
 use App\Models\checkouts\Address;
 use App\Models\checkouts\PaymentTransaction;
+use App\Models\checkouts\Transactions\Transaction;
 use App\Models\orders\Coupon;
 use App\Models\checkouts\orders\OrderItems;
 use App\Models\orders\OrderOptions;
@@ -57,7 +58,7 @@ class Order extends Model
         });
     }
 
-    public function scopeListAdmin($query,$method ,$from ,$to,$organization,$transactionId)
+    public function scopeListAdmin($query,$method ,$from ,$to,$organization,$transactionId,$last4Digits)
     {
         $query = $query->where('payment_status' , '!=' , 0);
         if ($organization){
@@ -69,6 +70,12 @@ class Order extends Model
         if ($transactionId) {
             $query->where('order_number', 'LIKE', '%' . $transactionId . '%');
         }
+//        if ($last4Digits) {
+//            $query->with('payment_transaction')
+//                ->whereHas('payment_transaction', function ($q)use($last4Digits) {
+//                    $q->whereIn('last4Digits',['4316','2147','4918','7244']);
+//                });
+//        }
         if ($from != null && $to != null){
             return $query->with('payment_transaction')
                 ->whereHas('payment_transaction', function ($q)use($method,$from,$to) {
@@ -139,6 +146,10 @@ class Order extends Model
     public function payment_transaction():BelongsTo
     {
         return $this->belongsTo(PaymentTransaction::class);
+    }
+    public function transactions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Transaction::class);
     }
     protected $casts = [
         'order_details' => 'array'

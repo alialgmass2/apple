@@ -1,0 +1,29 @@
+.color{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    text-transform: capitalize;
+    margin: 0;
+    color: #000 !important;
+}
+.color_circle{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: block;
+    position:relative;
+}
+.color-wrap{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.color_circle::after{
+    border-radius: inherit;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
+    content: "";
+    display: block;
+    height: inherit;
+    position: absolute;
+    width: inherit;
+}

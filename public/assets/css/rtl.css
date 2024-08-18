@@ -1,0 +1,114 @@
+/*=============================================
+=            Section BASE            =
+=============================================*/
+@font-face {
+    font-family: SF Hello;
+    src: url("./SFHello-Regular.ttf") format("woff");
+}
+
+html {
+    direction: rtl;
+}
+
+body,p,
+.footer .footer-ContactUs ul li p, .footer .footer-ContactUs ul li a
+{
+    font-family: SF Hello !important;
+}
+
+input,
+.select {
+    direction: rtl;
+}
+/* ====  End of BASE==== */
+/*=============================================
+=            Section BLACK PAGES            =
+=============================================*/
+
+.content {
+    padding-left: 0;
+    padding-right: 8.6%;
+}
+
+.cards_code-card_text p {
+    text-align: right;
+}
+
+.customized_paragraph {
+    direction: rtl;
+}
+
+.ar-arrow
+{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+
+.ar-ms-auto
+{
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+.ar-ms-0
+{
+    margin-right: 0;
+}
+.ar-direction-ltr
+{
+    direction: ltr;
+}
+.courses .description
+{
+    text-align: right;
+}
+
+.slider-pagination
+{
+    flex-direction: row-reverse;
+}
+.breadcrumb-item+.breadcrumb-item
+{
+    padding-left: 0;
+    padding-right: 0.5rem;
+}
+
+.breadcrumb-item+.breadcrumb-item::before
+{
+    float: right;
+    margin-top: 5px;
+    padding-left: 0.5rem;
+    padding-right: 0;
+}
+
+.cart-items-container .cart-items .cart-item .cart-left
+{
+    margin-right: 0;
+    margin-left: 16px;
+}
+.cart-items-container .cart-items .cart-item .title .two
+{
+    padding-right: 0;
+    padding-left: 10px;
+}
+
+.cart-items-container .cart-items .cart-item .cart-right .price
+{
+    text-align: left !important;
+}
+
+.checkout-container .checkout-section .left-section .top-choices .form-check-label
+{
+    margin-left: 0;
+    margin-right: 33px;
+}
+
+.checkout-container .checkout-section .right-section .product-section .product-item .image
+{
+    margin-right: 0;
+    margin-left: 16px;
+}
+/* ====  End of BLACK PAGES==== */

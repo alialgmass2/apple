@@ -28,6 +28,7 @@
                             @endforelse
                         </x-admin.select> &nbsp;&nbsp;
                         <x-admin.input title="transaction" error="transaction" wire:model.live="transaction" /> &nbsp;&nbsp;
+                        <x-admin.input title="last4Digits" error="last4Digits" wire:model.live="last4Digits" /> &nbsp;&nbsp;
                         <x-admin.input title="from" error="from" type="date" wire:model.live="from" /> &nbsp;&nbsp;
                         <x-admin.input title="to" error="to" type="date" wire:model.live="to" />
                     </h4>
@@ -53,7 +54,7 @@
                                     <td><strong>{{ $order->order_number }}</strong></td>
                                     <td>{{ $order->total }} SAR</td>
                                     <td>{{ \Carbon\Carbon::parse($order->created_at)->format('F m Y') }}</td>
-                                    <td>{{$order->payment_transaction->method}}</td>
+                                    <td>{{$order->payment_transaction->method}}{{$order->payment_transaction->last4Digits?' - '.$order->payment_transaction->last4Digits:''}}</td>
                                     {{-- <td>{{$order->payment_transaction->status ==1 ? 'true' : 'false'}}</td> --}}
                                     <td><span class="  order_status" style="background-color: {{ handleColorsForOrderStatauses($order->order_status) }}; color: {{ handleTextColorsForOrderStatauses($order->order_status) }};"
                                         ;>{{ ucfirst(strtolower(str_replace('_',' ',$order->order_status))) }}</span>
